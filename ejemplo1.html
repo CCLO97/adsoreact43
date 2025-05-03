@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Declara el tipo de documento como HTML5 -->
+<html lang="en"> <!-- Define el idioma del contenido como inglés -->
+<head>
+    <meta charset="UTF-8"> <!-- Especifica la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la ventana gráfica para que sea responsive -->
+    <title>Document</title> <!-- Define el título de la página -->
+</head>
+<body>
+    <div id="root"></div> <!-- Contenedor donde se renderizará la aplicación React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script> <!-- Incluye la biblioteca React en modo desarrollo -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> <!-- Incluye ReactDOM para manipular el DOM en modo desarrollo -->
+
+    <script>
+        function App() { 
+            // Define un componente funcional llamado App
+            // const time=new Date().toLocaleTimeString(); 
+            // Línea comentada que obtenía la hora actual como cadena de texto
+
+            const [time, setTime] = React.useState(new Date().toLocaleTimeString()); 
+            // Declara un estado llamado 'time' con su función para actualizarlo 'setTime', inicializado con la hora actual
+
+            React.useEffect(function() { 
+                // Hook de efecto que se ejecuta después de que el componente se monta
+                setInterval(function() { 
+                    // Configura un intervalo que se ejecuta cada segundo
+                    setTime(new Date().toLocaleTimeString()); 
+                    // Actualiza el estado 'time' con la hora actual
+                }, 1000); 
+                // Intervalo de 1000 milisegundos (1 segundo)
+            }, []); 
+            // El array vacío indica que el efecto solo se ejecuta una vez al montar el componente
+
+            return React.createElement("header", { className: "mi-header" }, `Hola Mundo ${time}`); 
+            // Retorna un elemento React de tipo 'header' con una clase CSS 'mi-header' y el texto "Hola Mundo" seguido de la hora actual
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root")); 
+        // Crea un punto de entrada React en el elemento con id 'root'
+
+        root.render(React.createElement(App)); 
+        // Renderiza el componente App dentro del contenedor 'root'
+    </script>
+</body>
+</html>
