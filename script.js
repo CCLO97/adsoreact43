@@ -162,4 +162,4 @@ const updatedBook = {
   moviePublicationDate: "2023-10-01",
 pages: 700,
 };
-updatedBook
+updatedBook;
